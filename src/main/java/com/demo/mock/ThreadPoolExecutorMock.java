@@ -31,6 +31,10 @@ public class ThreadPoolExecutorMock {
                 Thread thread = new Thread(r, "mock-thread-" + index);
                 //设置线程池的创建的线程为守护线程，main退出 程序结束
                 thread.setDaemon(true);
+
+
+                //如果这里设置为false,代表线程池创建的线程为非守护线程，main线程退出，非守护线程不会结束，导致jvm进程不会退出
+                //thread.setDaemon(false);
                 return thread;
             }
         }, new ThreadPoolExecutor.CallerRunsPolicy());
