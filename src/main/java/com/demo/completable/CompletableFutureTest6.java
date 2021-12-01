@@ -14,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 /**
  * @author yan.zhang
@@ -40,7 +41,12 @@ public class CompletableFutureTest6 {
 
                 }
             }
-        }, executor).thenApplyAsync(result -> {
+        }, executor).thenAcceptAsync(new Consumer<Void>() {
+            @Override
+            public void accept(Void unused) {
+                System.out.println("thenAccept()..." + Thread.currentThread().getName());
+            }
+        },executor).thenApplyAsync(result -> {
             System.out.println("thenApplyAsync()..." + Thread.currentThread().getName());
             return result + " Processed Result";
         }, executor);

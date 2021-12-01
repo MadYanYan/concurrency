@@ -26,7 +26,7 @@ public class ThreadPoolExecutorMock {
             @Override
             public Thread newThread(Runnable r) {
                 int index = atomicInteger.getAndIncrement();
-                System.out.println("ThreadPoolExecutorMock: create no " + index + " thread");
+                System.out.println("ThreadPoolExecutorMock: create No: " + index + " thread");
 
                 Thread thread = new Thread(r, "mock-thread-" + index);
                 //设置线程池的创建的线程为守护线程，main退出 程序结束
