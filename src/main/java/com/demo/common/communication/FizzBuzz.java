@@ -49,10 +49,36 @@ public class FizzBuzz {
                 e.printStackTrace();
             }
         };
+
+        Runnable fizzbuzz = () -> {
+            try {
+                fizzBuzz.fizzbuzz(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("fizzbuzz");
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
+
+        Runnable num = () -> {
+            try {
+                fizzBuzz.number(new IntConsumer() {
+                    @Override
+                    public void accept(int value) {
+                        System.out.println(value);
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        };
         new Thread(fizz).start();
-        new Thread(fizz).start();
-        new Thread(fizz).start();
-        new Thread(fizz).start();
+        new Thread(buzz).start();
+        new Thread(fizzbuzz).start();
+        new Thread(num).start();
 
         Thread.sleep(10);
     }
